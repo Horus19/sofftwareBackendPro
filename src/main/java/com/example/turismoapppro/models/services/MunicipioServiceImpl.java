@@ -14,4 +14,19 @@ public class MunicipioServiceImpl implements IMunicipioService{
     public List<Municipio> findAll() {
         return (List<Municipio>) municipioDao.findAll();
     }
+
+    @Override
+    public Municipio findById(Long id) {
+        return municipioDao.findById(id).orElse(null);
+    }
+
+    @Override
+    public Municipio save(Municipio municipio) {
+        return municipioDao.save(municipio);
+    }
+
+    @Override
+    public void delete(Long id) {
+        municipioDao.deleteById(id);
+    }
 }
