@@ -86,6 +86,11 @@ insert into municipio (nombre) values 	                             ('Albania');
 insert into municipio (nombre) values 	                             ('Aguada');
 insert into municipio (nombre) values 	                             ('Bucaramanga');
 
+/* Creamos algunos usuarios con sus roles*/
+INSERT into usuarios (username, password, enable) values ('Horus', 'horus123', 1);
+insert into roles (nombre) values ('ROLE_USER');
+
+
 
 
 

@@ -3,7 +3,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "usuarios")
 public class Usuario {
 
     @Id
@@ -15,10 +15,10 @@ public class Usuario {
     private String password;
     private Boolean enable;
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name="user_authorities", joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns =@JoinColumn(name = "role_id"),
-            uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id","role_id"})}
-    )
+//    @JoinTable(name="user_authorities", joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns =@JoinColumn(name = "role_id"),
+//            uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id","role_id"})}
+//    )
     private List<Role> roles;
 
     public Long getId() {
@@ -61,5 +61,8 @@ public class Usuario {
         this.roles = roles;
     }
 
+
     private  static  final long serialVersionUID = 1L;
+
+
 }
