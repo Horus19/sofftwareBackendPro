@@ -1,19 +1,15 @@
 package com.example.turismoapppro.models.entity;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
-@Entity
-@Table(name = "municipio")
-public class Municipio implements Serializable {
+import javax.persistence.*;
 
+@Entity
+@Table(name = "role")
+public class Role implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotEmpty
-    @Size(min = 4, max = 20)
-    @Column(nullable = false)
+    @Column(unique = true, length = 20)
     private String nombre;
 
     public Long getId() {
