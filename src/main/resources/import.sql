@@ -86,11 +86,6 @@ insert into municipio (nombre) values 	                             ('Albania');
 insert into municipio (nombre) values 	                             ('Aguada');
 insert into municipio (nombre) values 	                             ('Bucaramanga');
 
-/* Creamos algunos usuarios con sus roles*/
-INSERT into usuarios (username, password, enable) values ('Horus', 'horus123', 1);
-insert into roles (nombre) values ('ROLE_USER');
-
-
 
 INSERT INTO `usuarios` (username, password, enabled, nombre, apellido, email) VALUES ('Horus19cdv','$2a$10$C3Uln5uqnzx/GswADURJGOIdBqYrly9731fnwKDaUdBkt/M3qvtLq',1, 'Horacio', 'camacho','horus19@correo.com');
 INSERT INTO `usuarios` (username, password, enabled, nombre, apellido, email) VALUES ('admin','$2a$10$RmdEsvEfhI7Rcm9f/uZXPebZVCcPC7ZXZwV51efAvMAp1rIaRAfPK',1, 'Dago', 'Doe','dagodoe@correo.com');
