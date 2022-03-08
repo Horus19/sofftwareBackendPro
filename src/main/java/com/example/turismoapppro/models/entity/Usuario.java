@@ -1,24 +1,35 @@
 package com.example.turismoapppro.models.entity;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "usuarios")
-public class Usuario {
-
+public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(unique = true, length = 20)
     private String username;
+
     @Column(length = 60)
     private String password;
-    private Boolean enable;
+
+    private Boolean enabled;
+
+    private String nombre;
+    private String apellido;
+
+    @Column(unique = true)
+    private String email;
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JoinTable(name="user_authorities", joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns =@JoinColumn(name = "role_id"),
-//            uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id","role_id"})}
-//    )
+    @JoinTable(name="usuarios_roles", joinColumns= @JoinColumn(name="usuario_id"),
+            inverseJoinColumns=@JoinColumn(name="role_id"),
+            uniqueConstraints= {@UniqueConstraint(columnNames= {"usuario_id", "role_id"})})
+
     private List<Role> roles;
 
     public Long getId() {
@@ -45,12 +56,12 @@ public class Usuario {
         this.password = password;
     }
 
-    public Boolean getEnable() {
-        return enable;
+    public Boolean getEnabled() {
+        return enabled;
     }
 
-    public void setEnable(Boolean enable) {
-        this.enable = enable;
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     public List<Role> getRoles() {
@@ -61,8 +72,30 @@ public class Usuario {
         this.roles = roles;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
 
-    private  static  final long serialVersionUID = 1L;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
 
+    private static final long serialVersionUID = 1L;
 }

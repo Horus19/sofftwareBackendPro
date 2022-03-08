@@ -24,7 +24,6 @@ public class MunicipioRestController {
     }
 
     @GetMapping("/municipios/{id}")
-    //@ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> show(@PathVariable Long id){
         Municipio municipio = municipioService.findById(id);
         Map<String, Object> response = new HashMap<>();
@@ -34,6 +33,7 @@ public class MunicipioRestController {
         }
         return new ResponseEntity<Municipio>(municipio, HttpStatus.OK);
     }
+
     @PostMapping("/municipios")
     public ResponseEntity<?> create(@RequestBody Municipio municipio){
         Municipio municipioNew = null;
@@ -87,7 +87,5 @@ public class MunicipioRestController {
         response.put("mensaje", "El municipio ha sido eliminado con exito!");
         return  new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
-
-
 
 }

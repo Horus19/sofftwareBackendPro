@@ -1,15 +1,16 @@
 package com.example.turismoapppro.models.entity;
 
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table(name = "roles")
-public class Role implements Serializable {
+@Table(name="roles")
+public class Role  implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true, length = 20)
+
+    @Column(unique=true, length=20)
     private String nombre;
 
     public Long getId() {
@@ -28,5 +29,8 @@ public class Role implements Serializable {
         this.nombre = nombre;
     }
 
-    private  static  final long serialVersionUID = 1L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 }
