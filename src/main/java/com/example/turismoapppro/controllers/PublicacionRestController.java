@@ -1,7 +1,9 @@
 package com.example.turismoapppro.controllers;
 
+import com.example.turismoapppro.models.DTO.PublicacionDTO;
 import com.example.turismoapppro.models.entity.Municipio;
 import com.example.turismoapppro.models.entity.Publicacion;
+import com.example.turismoapppro.models.services.IMunicipioService;
 import com.example.turismoapppro.models.services.IPublicacionService;
 import com.example.turismoapppro.models.services.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class PublicacionRestController {
 
     @Autowired
     IPublicacionService publicacionService;
+
+    @Autowired
+    IMunicipioService municipioService;
 
     @GetMapping("/publicaciones/{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -47,11 +52,16 @@ public class PublicacionRestController {
     }
 
     @PostMapping("/publicaciones")
-    public ResponseEntity<?> create(@RequestBody Publicacion publicacion){
+    public ResponseEntity<?> create(@RequestBody PublicacionDTO publicacionDTO){
+        Publicacion publicacion1 = new Publicacion();
+        publicacion1.setTitulo(publicacionDTO.getTitulo());
+        publicacion1.setDescripcion(publicacionDTO.getDescription());
+        publicacion1.setUsuario(this.usuarioService.findById(publicacionDTO.getId_user()));
+        publicacion1.setMunicipio(this.municipioService.findById(publicacionDTO.getId_municipio()));
         Publicacion publicacionNew = null;
         Map<String, Object> response = new HashMap<>();
         try {
-            publicacionNew = this.usuarioService.savePublicacion(publicacion);
+            publicacionNew = this.usuarioService.savePublicacion(publicacion1);
         }
         catch (DataAccessException e){
             response.put("mensaje","Error al realizar el insert en la base de datos");

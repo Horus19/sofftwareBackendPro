@@ -56,6 +56,12 @@ public class UsuarioService implements IUsuarioService, UserDetailsService {
 
     @Override
     @Transactional(readOnly=true)
+    public Usuario findById(Long id) {
+        return usuarioDao.findUsuarioById(id);
+    }
+
+    @Override
+    @Transactional(readOnly=true)
     public Publicacion findPublicacionById(Long id) {
         return publicacionDao.findById(id).orElse(null);
     }
