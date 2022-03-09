@@ -1,7 +1,10 @@
 package com.example.turismoapppro.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,6 +34,22 @@ public class Usuario implements Serializable {
             uniqueConstraints= {@UniqueConstraint(columnNames= {"usuario_id", "role_id"})})
 
     private List<Role> roles;
+
+    @JsonIgnoreProperties({"usuario", "hibernateLazyInitializer", "handler"})
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Publicacion> publicaciones;
+
+    public List<Publicacion> getPublicaciones() {
+        return publicaciones;
+    }
+
+    public Usuario (){
+        this.publicaciones = new ArrayList<>();
+    }
+
+    public void setPublicaciones(List<Publicacion> publicaciones) {
+        this.publicaciones = publicaciones;
+    }
 
     public Long getId() {
         return id;

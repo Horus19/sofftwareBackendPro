@@ -1,15 +1,30 @@
 package com.example.turismoapppro.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
+
 @Entity
-@Table(name = "municipio")
+@Table(name = "municipios")
 public class Municipio implements Serializable {
+
+    public void setPublicaciones(List<Publicacion> publicaciones) {
+        this.publicaciones = publicaciones;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Long id;
     private String nombre;
+    @JsonIgnoreProperties({"publicaciones", "hibernateLazyInitializer", "handler"})
+    @OneToMany(mappedBy = "municipio", cascade = CascadeType.ALL )
+    private List<Publicacion> publicaciones;
+
+    public List<Publicacion> getPublicaciones() {
+        return publicaciones;
+    }
 
     public Long getId() {
         return id;
