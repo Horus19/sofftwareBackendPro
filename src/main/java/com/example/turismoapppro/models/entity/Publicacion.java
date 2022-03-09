@@ -21,11 +21,11 @@ public class Publicacion implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
 
-    @JsonIgnoreProperties({"publicaciones", "hibernateLazyInitializer", "handler"})
+    @JsonIgnoreProperties({"publicaciones", "hibernateLazyInitializer", "handler", "password"})
     @ManyToOne(fetch = FetchType.LAZY)
     private Usuario usuario;
 
-    @JsonIgnoreProperties({"publicaciones", "hibernateLazyInitializer", "handler"})
+    @JsonIgnoreProperties({"publicacion", "hibernateLazyInitializer", "handler"})
     @OneToMany(mappedBy = "publicacion", cascade = CascadeType.ALL )
     private List<Imagen> Imagenes;
 

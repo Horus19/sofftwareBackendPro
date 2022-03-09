@@ -102,15 +102,18 @@ insert into imagenes (url, publicacion_id) VALUES('https://cdn.baquianos.com/img
 
 
 
+INSERT into publicaciones  (descripcion, titulo, municipio_id, usuario_id) VALUES('lorem ipsum text', 'titulo de publicacion', 19, 1);
+insert into imagenes (url, publicacion_id) VALUES('https://cdn.baquianos.com/img/blog/2019/13/san-gil-i6yx360.jpg', 1);
 
 
 
+INSERT into publicaciones  (descripcion, titulo, municipio_id, usuario_id) VALUES('lorem ipsum text', 'titulo de publicacion', 19, 1);
+insert into imagenes (url, publicacion_id) VALUES('https://cdn.baquianos.com/img/blog/2019/13/san-gil-i6yx360.jpg', 1);
 
 
 
-
-
-
+INSERT into publicaciones  (descripcion, titulo, municipio_id, usuario_id) VALUES('lorem ipsum text', 'titulo de publicacion', 19, 1);
+insert into imagenes (url, publicacion_id) VALUES('https://cdn.baquianos.com/img/blog/2019/13/san-gil-i6yx360.jpg', 1);
 
 
 

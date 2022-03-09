@@ -1,6 +1,7 @@
 package com.example.turismoapppro.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,6 +13,7 @@ public class Imagen implements Serializable {
     private Long id;
     @Column(name = "url")
     private String url;
+
     @JsonIgnoreProperties({"imagenes", "hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
     private Publicacion publicacion;
