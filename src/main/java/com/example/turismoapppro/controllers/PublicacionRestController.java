@@ -38,7 +38,6 @@ public class PublicacionRestController {
     public List<getPublicacionDTO> index() {
         return this.publicacionService.findAll();
     }
-
     @GetMapping("/publicacionById/{id}")
     public getPublicacionDTO ShowById(@PathVariable Long id){
         return this.publicacionService.findById(id);
