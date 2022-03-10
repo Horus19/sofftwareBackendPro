@@ -1,13 +1,14 @@
-package com.example.turismoapppro.models.services;
+package com.example.turismoapppro.Service.Class;
 
-import com.example.turismoapppro.models.dao.IMunicipioDao;
+import com.example.turismoapppro.Service.Interfaces.IMunicipioService;
+import com.example.turismoapppro.Repository.IMunicipioDao;
 import com.example.turismoapppro.models.entity.Municipio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class MunicipioServiceImpl implements IMunicipioService{
+public class MunicipioServiceImpl implements IMunicipioService {
     @Autowired
     private IMunicipioDao municipioDao;
     @Override

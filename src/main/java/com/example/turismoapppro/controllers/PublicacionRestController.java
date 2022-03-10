@@ -1,11 +1,11 @@
 package com.example.turismoapppro.controllers;
 
 import com.example.turismoapppro.models.DTO.PublicacionDTO;
-import com.example.turismoapppro.models.entity.Municipio;
+import com.example.turismoapppro.models.DTO.getPublicacionDTO;
 import com.example.turismoapppro.models.entity.Publicacion;
-import com.example.turismoapppro.models.services.IMunicipioService;
-import com.example.turismoapppro.models.services.IPublicacionService;
-import com.example.turismoapppro.models.services.IUsuarioService;
+import com.example.turismoapppro.Service.Interfaces.IMunicipioService;
+import com.example.turismoapppro.Service.Interfaces.IPublicacionService;
+import com.example.turismoapppro.Service.Interfaces.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -20,56 +20,74 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api")
 public class PublicacionRestController {
-    @Autowired
+
     IUsuarioService usuarioService;
 
-    @Autowired
     IPublicacionService publicacionService;
 
-    @Autowired
     IMunicipioService municipioService;
 
     @GetMapping("/publicaciones/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Publicacion show(@PathVariable Long id) {
-        return usuarioService.findPublicacionById(id);
+    public getPublicacionDTO show(@PathVariable Long id) {
+        return publicacionService.findById(id);
     }
 
     @GetMapping("/publicaciones")
     @ResponseStatus(HttpStatus.OK)
-    public List<Publicacion> index() {
+    public List<getPublicacionDTO> index() {
         return this.publicacionService.findAll();
     }
 
     @GetMapping("/publicacionById/{id}")
-    public Publicacion ShowById(@PathVariable Long id){
+    public getPublicacionDTO ShowById(@PathVariable Long id){
         return this.publicacionService.findById(id);
     }
 
     @DeleteMapping("/publicacionById/{id}")
     public void delete(@PathVariable Long id){
-        this.usuarioService.deletePublicacionByID(id);
+        this.publicacionService.delete(id);
     }
 
     @PostMapping("/publicaciones")
-    public ResponseEntity<?> create(@RequestBody PublicacionDTO publicacionDTO){
-        Publicacion publicacion1 = new Publicacion();
-        publicacion1.setTitulo(publicacionDTO.getTitulo());
-        publicacion1.setDescripcion(publicacionDTO.getDescription());
-        publicacion1.setUsuario(this.usuarioService.findById(publicacionDTO.getId_user()));
-        publicacion1.setMunicipio(this.municipioService.findById(publicacionDTO.getId_municipio()));
-        Publicacion publicacionNew = null;
-        Map<String, Object> response = new HashMap<>();
-        try {
-            publicacionNew = this.usuarioService.savePublicacion(publicacion1);
-        }
-        catch (DataAccessException e){
-            response.put("mensaje","Error al realizar el insert en la base de datos");
-            response.put("ERROR", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
-            return  new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        response.put("mensaje","la Publicacion ha sido creado con exito");
-        response.put("Publicacion", publicacionNew);
-        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+    public ResponseEntity<Boolean> create(@RequestBody PublicacionDTO publicacionDTO) {
+        var response = this.publicacionService.savePublicacion(publicacionDTO);
+        if (response == null)
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    @PutMapping("/publicaciones")
+    public ResponseEntity<Boolean> update(@RequestBody PublicacionDTO publicacionDTO) {
+        var response = this.publicacionService.update(publicacionDTO);
+        if (!response.isPresent())
+            return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(true, HttpStatus.OK);
+    }
+    @GetMapping("/publicacionesByMunicipio/{id}")
+    public ResponseEntity<List<getPublicacionDTO>> getPublicacionesByIdMunicipio(@PathVariable Long id){
+        var response = this.publicacionService.findAllByMunicipio(id);
+        if(response.isEmpty())
+            return new ResponseEntity<>(response, HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    @GetMapping("/publicacionesByUser/{id}")
+    public ResponseEntity<List<getPublicacionDTO>> getPublicacionesByUser(@PathVariable Long id){
+        var response = this.publicacionService.findAllByUsuario(id);
+        if(response.isEmpty())
+            return new ResponseEntity<>(response, HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @Autowired
+    public void setUsuarioService(IUsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
+    }
+    @Autowired
+    public void setPublicacionService(IPublicacionService publicacionService) {
+        this.publicacionService = publicacionService;
+    }
+    @Autowired
+    public void setMunicipioService(IMunicipioService municipioService) {
+        this.municipioService = municipioService;
     }
 }

@@ -1,7 +1,7 @@
 package com.example.turismoapppro.controllers;
 
 import com.example.turismoapppro.models.entity.Municipio;
-import com.example.turismoapppro.models.services.IMunicipioService;
+import com.example.turismoapppro.Service.Interfaces.IMunicipioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -16,8 +16,9 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api")
 public class MunicipioRestController {
-    @Autowired
+
     private IMunicipioService municipioService;
+
     @GetMapping("/municipios")
     public List<Municipio> index(){
         return municipioService.findAll();
@@ -87,5 +88,8 @@ public class MunicipioRestController {
         response.put("mensaje", "El municipio ha sido eliminado con exito!");
         return  new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
-
+    @Autowired
+    public MunicipioRestController(IMunicipioService municipioService) {
+        this.municipioService = municipioService;
+    }
 }

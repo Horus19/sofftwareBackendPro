@@ -1,8 +1,8 @@
-package com.example.turismoapppro.models.services;
+package com.example.turismoapppro.Service.Class;
 
-import com.example.turismoapppro.models.dao.IPublicacionDao;
-import com.example.turismoapppro.models.dao.IUsuarioDao;
-import com.example.turismoapppro.models.entity.Publicacion;
+import com.example.turismoapppro.Repository.IPublicacionDao;
+import com.example.turismoapppro.Repository.IUsuarioDao;
+import com.example.turismoapppro.Service.Interfaces.IUsuarioService;
 import com.example.turismoapppro.models.entity.Usuario;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,10 +22,9 @@ import java.util.stream.Collectors;
 public class UsuarioService implements IUsuarioService, UserDetailsService {
     private Logger logger = LoggerFactory.getLogger(UsuarioService.class);
 
-    @Autowired
+
     private IUsuarioDao usuarioDao;
 
-    @Autowired
     private IPublicacionDao publicacionDao;
 
     @Override
@@ -60,21 +59,13 @@ public class UsuarioService implements IUsuarioService, UserDetailsService {
         return usuarioDao.findUsuarioById(id);
     }
 
-    @Override
-    @Transactional(readOnly=true)
-    public Publicacion findPublicacionById(Long id) {
-        return publicacionDao.findById(id).orElse(null);
+    @Autowired
+    public void setUsuarioDao(IUsuarioDao usuarioDao) {
+        this.usuarioDao = usuarioDao;
+    }
+    @Autowired
+    public void setPublicacionDao(IPublicacionDao publicacionDao) {
+        this.publicacionDao = publicacionDao;
     }
 
-    @Override
-    @Transactional
-    public Publicacion savePublicacion(Publicacion publicacion) {
-        return publicacionDao.save(publicacion);
-    }
-
-    @Override
-    @Transactional
-    public void deletePublicacionByID(Long id) {
-        publicacionDao.deleteById(id);
-    }
 }

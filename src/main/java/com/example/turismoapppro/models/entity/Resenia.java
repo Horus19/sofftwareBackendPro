@@ -1,14 +1,26 @@
 package com.example.turismoapppro.models.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.io.Serializable;
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "resenias")
 public class Resenia implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name="description")
     private String description;
+    @Column(name="publicacion_id")
+    private Long publicacion_id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "publicacion_id", insertable = false, updatable = false)
+    private Publicacion publicacion;
 
     public Long getId() {
         return id;
@@ -33,8 +45,5 @@ public class Resenia implements Serializable {
     public void setPublicacion(Publicacion publicacion) {
         this.publicacion = publicacion;
     }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Publicacion publicacion;
 
 }

@@ -3,12 +3,14 @@ package com.example.turismoapppro.models.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
 @Table(name = "publicaciones")
 public class Publicacion implements Serializable {
     @Id
@@ -21,20 +23,31 @@ public class Publicacion implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
 
+    @Column(name="usuario_id")
+    private Long Id_user;
+
+    @Column(name="municipio_id")
+    private Long Id_municipio;
+
+
     @JsonIgnoreProperties({"publicaciones", "hibernateLazyInitializer", "handler", "password"})
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id", insertable = false, updatable = false)
     private Usuario usuario;
 
-    @JsonIgnoreProperties({"publicacion", "hibernateLazyInitializer", "handler"})
-    @OneToMany(mappedBy = "publicacion", cascade = CascadeType.ALL )
-    private List<Imagen> Imagenes;
+//    @JsonIgnoreProperties({"publicacion", "hibernateLazyInitializer", "handler"})
+//    @OneToMany(mappedBy = "publicacion", cascade = CascadeType.ALL )
+//    @JoinColumn(name = "usuario_id", insertable = false, updatable = false)
+//    private List<Imagen> Imagenes;
 
     @JsonIgnoreProperties({"publicaciones", "hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "municipio_id", insertable = false, updatable = false)
     private Municipio municipio;
 
-    @OneToMany(mappedBy = "publicacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Resenia> resenias;
+//    @OneToMany(mappedBy = "publicacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinColumn(insertable = false, updatable = false)
+//    private List<Resenia> resenias;
 
     public Long getId() {
         return id;
@@ -68,13 +81,13 @@ public class Publicacion implements Serializable {
         this.usuario = usuario;
     }
 
-    public List<Imagen> getImagenes() {
-        return Imagenes;
-    }
-
-    public void setImagenes(List<Imagen> imagenes) {
-        Imagenes = imagenes;
-    }
+//    public List<Imagen> getImagenes() {
+//        return Imagenes;
+//    }
+//
+//    public void setImagenes(List<Imagen> imagenes) {
+//        Imagenes = imagenes;
+//    }
 
     public Municipio getMunicipio() {
         return municipio;
@@ -84,11 +97,27 @@ public class Publicacion implements Serializable {
         this.municipio = municipio;
     }
 
-    public List<Resenia> getResenias() {
-        return resenias;
+//    public List<Resenia> getResenias() {
+//        return resenias;
+//    }
+//
+//    public void setResenias(List<Resenia> resenias) {
+//        this.resenias = resenias;
+//    }
+
+    public Long getId_user() {
+        return Id_user;
     }
 
-    public void setResenias(List<Resenia> resenias) {
-        this.resenias = resenias;
+    public void setId_user(Long id_user) {
+        Id_user = id_user;
+    }
+
+    public Long getId_municipio() {
+        return Id_municipio;
+    }
+
+    public void setId_municipio(Long id_municipio) {
+        Id_municipio = id_municipio;
     }
 }

@@ -1,12 +1,15 @@
 package com.example.turismoapppro.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+
 @Entity
+@NoArgsConstructor
 @Table(name = "municipios")
 public class Municipio implements Serializable {
 

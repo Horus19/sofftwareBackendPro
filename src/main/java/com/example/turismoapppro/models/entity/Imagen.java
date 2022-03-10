@@ -1,45 +1,29 @@
 package com.example.turismoapppro.models.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
 @Entity
+@Data
+@NoArgsConstructor
 @Table(name = "imagenes")
 public class Imagen implements Serializable {
+    private  static  final long serialVersionUID = -4215902333095746166L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "url")
     private String url;
+    @Column(name = "publicacion_id")
+    private Long idPublicacion;
 
-    @JsonIgnoreProperties({"imagenes", "hibernateLazyInitializer", "handler"})
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "publicacion_id", insertable = false, updatable = false)
     private Publicacion publicacion;
 
-    public String getUrl() {
-        return url;
-    }
-
-    public Publicacion getPublicacion() {
-        return publicacion;
-    }
-
-    public void setPublicacion(Publicacion publicacion) {
-        this.publicacion = publicacion;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-    private  static  final long serialVersionUID = 1L;
 }

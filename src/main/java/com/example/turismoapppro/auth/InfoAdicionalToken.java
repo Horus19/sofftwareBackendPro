@@ -1,7 +1,7 @@
 package com.example.turismoapppro.auth;
 
 import com.example.turismoapppro.models.entity.Usuario;
-import com.example.turismoapppro.models.services.IUsuarioService;
+import com.example.turismoapppro.Service.Interfaces.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
@@ -14,7 +14,7 @@ import java.util.Map;
 
 @Component
 public class InfoAdicionalToken implements TokenEnhancer {
-    @Autowired
+
     private IUsuarioService usuarioService;
 
     @Override
@@ -31,5 +31,9 @@ public class InfoAdicionalToken implements TokenEnhancer {
         ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(info);
 
         return accessToken;
+    }
+    @Autowired
+    public InfoAdicionalToken(IUsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
     }
 }
