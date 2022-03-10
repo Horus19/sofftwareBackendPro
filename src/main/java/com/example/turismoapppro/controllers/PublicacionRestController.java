@@ -48,6 +48,7 @@ public class PublicacionRestController {
         this.publicacionService.delete(id);
     }
 
+
     @PostMapping("/publicaciones")
     public ResponseEntity<Boolean> create(@RequestBody PublicacionDTO publicacionDTO) {
         var response = this.publicacionService.savePublicacion(publicacionDTO);
