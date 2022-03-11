@@ -13,6 +13,7 @@ public class getPublicacionDTO implements Serializable {
     private Long id;
     private String titulo;
     private String municipio;
+    private Long Id_municipio;
     private String usuario;
     private String descripcion;
     private String resenias;

@@ -19,6 +19,7 @@ public interface IPublicacionMapper {
             @Mapping(target = "id",source = "id"),
             @Mapping(target = "titulo",source = "titulo"),
             @Mapping(target = "municipio",source = "municipio.nombre"),
+            @Mapping(target = "id_municipio",source = "municipio.id"),
             @Mapping(target = "usuario",source = "usuario.username"),
             @Mapping(target = "descripcion",source = "descripcion"),
             @Mapping(target = "resenias", ignore = true)

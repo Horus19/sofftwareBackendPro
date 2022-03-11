@@ -20,13 +20,15 @@ import java.util.Arrays;
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/municipios", "/api/clientes/page/**", "/api/uploads/img/**", "/images/**").permitAll()
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/municipios", "/api/municipios/**", "/api/publicacionById/**", "/api/publicacionesByUser/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/publicaciones").permitAll()
                 /*.antMatchers(HttpMethod.GET, "/api/clientes/{id}").hasAnyRole("USER", "ADMIN")
                 .antMatchers(HttpMethod.POST, "/api/clientes/upload").hasAnyRole("USER", "ADMIN")
                 .antMatchers(HttpMethod.POST, "/api/clientes").hasRole("ADMIN")
                 .antMatchers("/api/clientes/**").hasRole("ADMIN")*/
-                .anyRequest().authenticated()
+                //Desactivacion temporal para hacer pruebas
+                //Se debe activar anyRequest para que rechaze peticiones no autorizadas
+                //.anyRequest().authenticated()
                 .and().cors().configurationSource(corsConfigurationSource());
     }
 
