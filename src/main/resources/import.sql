@@ -97,22 +97,22 @@ INSERT INTO `usuarios_roles` (usuario_id, role_id) VALUES (1, 1);
 INSERT INTO `usuarios_roles` (usuario_id, role_id) VALUES (2, 2);
 INSERT INTO `usuarios_roles` (usuario_id, role_id) VALUES (2, 1);
 
-INSERT into publicaciones  (descripcion, titulo, municipio_id, usuario_id) VALUES('lorem ipsum text', 'titulo de publicacion', 19, 1);
+INSERT into publicaciones  (descripcion, titulo, municipio_id, usuario_id, url_image ) VALUES('lorem ipsum text', 'titulo de publicacion', 19, 1, 'https://cdn.baquianos.com/img/blog/2019/13/san-gil-i6yx640.jpg');
 insert into imagenes (url, publicacion_id) VALUES('https://cdn.baquianos.com/img/blog/2019/13/san-gil-i6yx360.jpg', 1);
 
 
 
-INSERT into publicaciones  (descripcion, titulo, municipio_id, usuario_id) VALUES('lorem ipsum text', 'titulo de publicacion', 19, 1);
+INSERT into publicaciones  (descripcion, titulo, municipio_id, usuario_id, url_image) VALUES('lorem ipsum text', 'titulo de publicacion', 19, 1,  'https://cdn.baquianos.com/img/blog/2019/13/san-gil-i6yx640.jpg');
 insert into imagenes (url, publicacion_id) VALUES('https://cdn.baquianos.com/img/blog/2019/13/san-gil-i6yx360.jpg', 1);
 
 
 
-INSERT into publicaciones  (descripcion, titulo, municipio_id, usuario_id) VALUES('lorem ipsum text', 'titulo de publicacion', 19, 1);
+INSERT into publicaciones  (descripcion, titulo, municipio_id, usuario_id, url_image) VALUES('lorem ipsum text', 'titulo de publicacion', 19, 1,  'https://cdn.baquianos.com/img/blog/2019/13/san-gil-i6yx640.jpg');
 insert into imagenes (url, publicacion_id) VALUES('https://cdn.baquianos.com/img/blog/2019/13/san-gil-i6yx360.jpg', 1);
 
 
 
-INSERT into publicaciones  (descripcion, titulo, municipio_id, usuario_id) VALUES('lorem ipsum text', 'titulo de publicacion', 19, 1);
+INSERT into publicaciones  (descripcion, titulo, municipio_id, usuario_id, url_image) VALUES('lorem ipsum text', 'titulo de publicacion', 19, 1,  'https://cdn.baquianos.com/img/blog/2019/13/san-gil-i6yx640.jpg');
 insert into imagenes (url, publicacion_id) VALUES('https://cdn.baquianos.com/img/blog/2019/13/san-gil-i6yx360.jpg', 1);
 
 

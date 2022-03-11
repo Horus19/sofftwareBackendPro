@@ -29,6 +29,17 @@ public class Publicacion implements Serializable {
     @Column(name="municipio_id")
     private Long Id_municipio;
 
+    public String getUrl_image() {
+        return url_image;
+    }
+
+    public void setUrl_image(String url_image) {
+        this.url_image = url_image;
+    }
+
+    @Column(name="url_image")
+    private String url_image;
+
 
     @JsonIgnoreProperties({"publicaciones", "hibernateLazyInitializer", "handler", "password"})
     @ManyToOne(fetch = FetchType.LAZY)

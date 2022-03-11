@@ -14,6 +14,8 @@ public class PublicacionDTO {
     private Long Id_user;
     private Long Id_municipio;
     private List<Imagen> imagenList;
+    //->
+    private String url_image;
 
 
 }

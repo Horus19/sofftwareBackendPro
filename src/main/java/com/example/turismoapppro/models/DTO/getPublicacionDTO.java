@@ -18,5 +18,8 @@ public class getPublicacionDTO implements Serializable {
     private String descripcion;
     private String resenias;
 
+    //url_imgage == null ;<
+    private String url_image;
+
 
 }
